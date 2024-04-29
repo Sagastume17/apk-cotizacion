@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".VER2">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginBottom="21dp"
+        android:background="@color/material_dynamic_primary80"
+        android:gravity="center|center_horizontal"
+        android:text="LISTADO DE COTIZACIONES PENDIENTES"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="138dp"
+        android:backgroundTint="#8BC34A"
+        android:onClick="activity_main"
+        android:text="Regresar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+
+        android:id="@+id/listamostra"
+        android:layout_width="match_parent"
+        android:layout_height="461dp"
+        android:layout_marginTop="-125dp" />
+
+
+</LinearLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/regis2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:background="#FF9800"
+        android:text="Sistema de Cotizacones"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="78dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/btnp2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regis2"
+        app:srcCompat="@drawable/cotizacion2" />
+
+    <Button
+        android:id="@+id/btnp"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="1dp"
+        android:backgroundTint="@color/design_default_color_secondary_variant"
+        android:text="Realizar Cotizacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <Button
+        android:id="@+id/btnp1"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:backgroundTint="@color/celeste"
+        android:text="Ver Cotizaciones Realizadas "
+        app:layout_constraintBottom_toTopOf="@+id/button12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnp2" />
+
+    <Button
+        android:id="@+id/btnp2"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:backgroundTint="@color/material_dynamic_tertiary60"
+        android:text="Ver Cotizaciones Pendientes"
+        app:layout_constraintBottom_toTopOf="@+id/btnp1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="43dp"
+        android:backgroundTint="#F44336"
+        android:onClick="exitApp"
+        android:text="Salir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnp1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
