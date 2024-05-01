@@ -70,7 +70,7 @@
 
 
         <Button
-            android:id="@+id/btnp2"
+            android:id="@+id/btn_confirmar"
             android:gravity="center|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

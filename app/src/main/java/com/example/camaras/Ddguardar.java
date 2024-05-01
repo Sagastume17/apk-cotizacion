@@ -40,22 +40,17 @@ public class Ddguardar extends Helper {
         return id;
     }
 
-    public void actualizarEstado(int id, int nuevoEstado) {
-        try {
-            Helper helper = new Helper(context);
-            SQLiteDatabase db = helper.getWritableDatabase();
 
-            ContentValues values = new ContentValues();
-            values.put("estado", nuevoEstado);
+    public void updateEstado(int id, int nuevoEstado) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("estado", nuevoEstado);  // Asumiendo que el nombre de la columna en tu tabla es 'estado'
 
-            String whereClause = "id = ?";
-            String[] whereArgs = {String.valueOf(id)};
-
-            db.update(TABLE_COTIZACION, values, whereClause, whereArgs);
-        } catch (Exception ex) {
-            ex.toString();
-        }
+        // Actualizando la fila
+        db.update("TABLE_COTIZACION", values, "id = ?", new String[] { String.valueOf(id) });
+        db.close();
     }
+
 
     public ArrayList< Mostrar>mostrarDatos(){
         Helper Helper = new Helper(context);

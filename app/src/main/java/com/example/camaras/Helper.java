@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -69,21 +70,28 @@ public class Helper extends SQLiteOpenHelper {
 
     // Método para actualizar el estado de un registro a 1
     public void actualizarEstado(int id, int nuevoEstado) {
-        try {
-            SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_ESTADO, nuevoEstado);
+        String whereClause = "ID = ?";
+        String[] whereArgs = {String.valueOf(id)};
 
-            ContentValues values = new ContentValues();
-            values.put(COL_ESTADO, nuevoEstado);
+        Log.d("DBHelper", "Intentando actualizar ID: " + id + " a estado " + nuevoEstado);
 
-            String whereClause = "ID = ?";
-            String[] whereArgs = {String.valueOf(id)};
+        int rowsAffected = db.update(TABLE_COTIZACION, values, whereClause, whereArgs);
+        Log.d("DBHelper", "Filas afectadas: " + rowsAffected);
 
-            db.update(TABLE_COTIZACION, values, whereClause, whereArgs);
-            db.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (rowsAffected == 0) {
+            Log.d("DBHelper", "No se encontró el registro con ID: " + id);
+        } else {
+            Log.d("DBHelper", "Actualización exitosa para el ID: " + id);
         }
+
+        db.close();
     }
+
+
+
 }
 
 

@@ -17,6 +17,7 @@
         android:background="@android:color/holo_red_light"
         android:gravity="center|center_horizontal"
         android:text="LISTADO DE COTIZACIONES"
+        android:textColor="@color/black"
         android:textSize="20dp" />
 
     <Button

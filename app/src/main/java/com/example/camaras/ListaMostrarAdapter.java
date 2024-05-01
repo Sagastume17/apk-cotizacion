@@ -10,13 +10,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections; // Importa esta clase para utilizar el método reverse() en la lista
-
+import java.util.stream.Collectors;
 
 public class ListaMostrarAdapter extends RecyclerView.Adapter<ListaMostrarAdapter.MostrarViewHolder> {
     ArrayList<Mostrar>listaMostrar;
 
-    public ListaMostrarAdapter(ArrayList<Mostrar>listaMostrar){
-        this.listaMostrar = listaMostrar;
+    public ListaMostrarAdapter(ArrayList<Mostrar> listaMostrar){
+        this.listaMostrar = listaMostrar.stream()
+                .filter(mostrar -> mostrar.getEstado() == 1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        Collections.reverse(this.listaMostrar);
+    }
+
+    public void updateList(ArrayList<Mostrar> nuevaLista) {
+        this.listaMostrar = nuevaLista.stream()
+                .filter(mostrar -> mostrar.getEstado() == 1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        Collections.reverse(this.listaMostrar);
+        notifyDataSetChanged();  // Notifica al adaptador que los datos han cambiado
     }
 
     @NonNull
@@ -26,17 +37,33 @@ public class ListaMostrarAdapter extends RecyclerView.Adapter<ListaMostrarAdapte
         return new MostrarViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull MostrarViewHolder holder, int position) {
-        holder.view_cliente.setText(listaMostrar.get(position).getCliente());
-        holder.view_telefono.setText(listaMostrar.get(position).getTelefono());
-        holder.view_fecha.setText(listaMostrar.get(position).getFecha());
-        holder.view_direccion.setText(listaMostrar.get(position).getDireccion());
-        holder.view_descripcion.setText(listaMostrar.get(position).getDescripcion());
-        holder.view_total.setText(listaMostrar.get(position).getTotal());
-
-
+        Mostrar item = listaMostrar.get(position);
+        if (item.getCliente() != null) {
+            holder.view_cliente.setText(item.getCliente());
+        }
+        if (item.getTelefono() != null) {
+            holder.view_telefono.setText(item.getTelefono());
+        }
+        if (item.getFecha() != null) {
+            holder.view_fecha.setText(item.getFecha());
+        }
+        if (item.getDireccion() != null) {
+            holder.view_direccion.setText(item.getDireccion());
+        }
+        if (item.getDescripcion() != null) {
+            holder.view_descripcion.setText(item.getDescripcion());
+        }
+        if (item.getTotal() != null) {
+            holder.view_total.setText(item.getTotal());
+        }
     }
+
+
+
+// Repetir para otros campos...
 
     @Override
     public int getItemCount() {
