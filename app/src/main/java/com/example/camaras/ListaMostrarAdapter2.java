@@ -5,13 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+<<<<<<< HEAD
 import android.widget.Button;
 import android.widget.Toast;
 
+=======
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
+<<<<<<< HEAD
 import java.util.stream.Collectors;
 
 public class ListaMostrarAdapter2 extends RecyclerView.Adapter<ListaMostrarAdapter2.MostrarViewHolder> {
@@ -27,7 +31,24 @@ public class ListaMostrarAdapter2 extends RecyclerView.Adapter<ListaMostrarAdapt
         Collections.reverse(this.listaMostrar2);
         this.dbHelper = dbHelper;
         this.listaCompleta2 = new ArrayList<>(listaMostrar);
+=======
+import android.widget.Button;
+
+public class ListaMostrarAdapter2 extends RecyclerView.Adapter<ListaMostrarAdapter2.MostrarViewHolder> {
+    ArrayList<Mostrar> listaMostrar2;
+
+
+    public ListaMostrarAdapter2(ArrayList<Mostrar> listaMostrar2) {
+        this.listaMostrar2 = new ArrayList<>();
+        for (Mostrar mostrar : listaMostrar2) {
+            if (mostrar.getEstado() == 0) {
+                this.listaMostrar2.add(mostrar);
+            }
+        }
+        Collections.reverse(this.listaMostrar2);  // Opcional: invierte el orden si es necesario
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
     }
+
 
     @NonNull
     @Override
@@ -38,6 +59,7 @@ public class ListaMostrarAdapter2 extends RecyclerView.Adapter<ListaMostrarAdapt
 
     @Override
     public void onBindViewHolder(@NonNull MostrarViewHolder holder, int position) {
+<<<<<<< HEAD
         Mostrar mostrar = listaMostrar2.get(position);
         holder.view_cliente.setText(mostrar.getCliente());
         holder.view_telefono.setText(mostrar.getTelefono());
@@ -45,6 +67,14 @@ public class ListaMostrarAdapter2 extends RecyclerView.Adapter<ListaMostrarAdapt
         holder.view_direccion.setText(mostrar.getDireccion());
         holder.view_descripcion.setText(mostrar.getDescripcion());
         holder.view_total.setText(mostrar.getTotal());
+=======
+        holder.view_cliente.setText(listaMostrar2.get(position).getCliente());
+        holder.view_telefono.setText(listaMostrar2.get(position).getTelefono());
+        holder.view_fecha.setText(listaMostrar2.get(position).getFecha());
+        holder.view_direccion.setText(listaMostrar2.get(position).getDireccion());
+        holder.view_descripcion.setText(listaMostrar2.get(position).getDescripcion());
+        holder.view_total.setText(listaMostrar2.get(position).getTotal());
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
     }
 
 
@@ -55,7 +85,11 @@ public class ListaMostrarAdapter2 extends RecyclerView.Adapter<ListaMostrarAdapt
 
     public class MostrarViewHolder extends RecyclerView.ViewHolder {
         TextView view_cliente, view_telefono, view_fecha, view_direccion, view_descripcion, view_total;
+<<<<<<< HEAD
         Button btn_confirmar, btn_eliminar;
+=======
+        Button btn_confirmar;
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
 
         public MostrarViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,7 +101,27 @@ public class ListaMostrarAdapter2 extends RecyclerView.Adapter<ListaMostrarAdapt
             view_descripcion = itemView.findViewById(R.id.view_descripcion);
             view_total = itemView.findViewById(R.id.view_total);
             btn_confirmar = itemView.findViewById(R.id.btn_confirmar);
+<<<<<<< HEAD
             btn_eliminar = itemView.findViewById(R.id.btn_eliminar);
+=======
+
+            btn_confirmar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Mostrar mostrar = listaMostrar2.get(position);
+                        if (mostrar.getEstado() == 0) {
+                            Helper dbHelper = new Helper(v.getContext());
+                            dbHelper.actualizarEstado(mostrar.getId(), 1);
+                            listaMostrar2.remove(position);
+                            notifyItemRemoved(position);
+
+                        }
+                    }
+                }
+            });
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
 
             btn_confirmar.setOnClickListener(new View.OnClickListener() {
                 @Override

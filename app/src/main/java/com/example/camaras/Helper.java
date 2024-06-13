@@ -6,7 +6,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+<<<<<<< HEAD
 import android.database.Cursor;
+=======
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
 
 import androidx.annotation.Nullable;
 
@@ -59,6 +62,7 @@ public class Helper extends SQLiteOpenHelper {
         String whereClause = "ID = ?";
         String[] whereArgs = {String.valueOf(id)};
 
+<<<<<<< HEAD
         try {
             int rowsAffected = db.update(TABLE_COTIZACION, values, whereClause, whereArgs);
             if (rowsAffected > 0) {
@@ -70,9 +74,23 @@ public class Helper extends SQLiteOpenHelper {
             e.printStackTrace();
         } finally {
             db.close();
+=======
+        Log.d("DBHelper", "Intentando actualizar ID: " + id + " a estado " + nuevoEstado);
+
+        int rowsAffected = db.update(TABLE_COTIZACION, values, whereClause, whereArgs);
+        Log.d("DBHelper", "Filas afectadas: " + rowsAffected);
+
+        if (rowsAffected == 0) {
+            Log.d("DBHelper", "No se encontró el registro con ID: " + id);
+        } else {
+            Log.d("DBHelper", "Actualización exitosa para el ID: " + id);
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
         }
+
+        db.close();
     }
 
+<<<<<<< HEAD
     public void eliminarCotizacion(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_COTIZACION, "ID = ?", new String[]{String.valueOf(id)});
@@ -104,5 +122,8 @@ public class Helper extends SQLiteOpenHelper {
         return lista;
     }
 
+=======
+
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
 
 }

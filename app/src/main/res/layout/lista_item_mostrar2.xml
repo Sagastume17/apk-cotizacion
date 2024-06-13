@@ -64,7 +64,14 @@
             android:textColor="#0B0A0A"
             android:textSize="15sp" />
 
+<<<<<<< HEAD
         <LinearLayout
+=======
+
+        <Button
+            android:id="@+id/btn_confirmar"
+            android:gravity="center|center_horizontal"
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

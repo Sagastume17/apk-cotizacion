@@ -42,6 +42,20 @@ public class Ddguardar extends Helper {
 
     }
 
+<<<<<<< HEAD
+=======
+
+    public void updateEstado(int id, int nuevoEstado) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("estado", nuevoEstado);  // Asumiendo que el nombre de la columna en tu tabla es 'estado'
+
+        // Actualizando la fila
+        db.update("TABLE_COTIZACION", values, "id = ?", new String[] { String.valueOf(id) });
+        db.close();
+    }
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
+
 
     public ArrayList< Mostrar>mostrarDatos(){
         Helper Helper = new Helper(context);

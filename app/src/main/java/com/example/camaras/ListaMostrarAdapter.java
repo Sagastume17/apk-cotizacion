@@ -12,7 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Collections;
+=======
+import java.util.Collections; // Importa esta clase para utilizar el método reverse() en la lista
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
 import java.util.stream.Collectors;
 
 public class ListaMostrarAdapter extends RecyclerView.Adapter<ListaMostrarAdapter.MostrarViewHolder> {
@@ -20,14 +24,29 @@ public class ListaMostrarAdapter extends RecyclerView.Adapter<ListaMostrarAdapte
     private ArrayList<Mostrar> listaCompleta; // Lista original completa
     private Helper dbHelper;
 
+<<<<<<< HEAD
     // Constructor
     public ListaMostrarAdapter(ArrayList<Mostrar> listaMostrar, Helper dbHelper) {
+=======
+    public ListaMostrarAdapter(ArrayList<Mostrar> listaMostrar){
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
         this.listaMostrar = listaMostrar.stream()
                 .filter(mostrar -> mostrar.getEstado() == 1)
                 .collect(Collectors.toCollection(ArrayList::new));
         Collections.reverse(this.listaMostrar);
+<<<<<<< HEAD
         this.dbHelper = dbHelper;
         this.listaCompleta = new ArrayList<>(listaMostrar);
+=======
+    }
+
+    public void updateList(ArrayList<Mostrar> nuevaLista) {
+        this.listaMostrar = nuevaLista.stream()
+                .filter(mostrar -> mostrar.getEstado() == 1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        Collections.reverse(this.listaMostrar);
+        notifyDataSetChanged();  // Notifica al adaptador que los datos han cambiado
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
     }
 
     // Método para actualizar la lista
@@ -47,7 +66,11 @@ public class ListaMostrarAdapter extends RecyclerView.Adapter<ListaMostrarAdapte
         return new MostrarViewHolder(view);
     }
 
+<<<<<<< HEAD
     // Binding data
+=======
+
+>>>>>>> 01098a21fae09ba0befe41ec547def696cdd4dea
     @Override
     public void onBindViewHolder(@NonNull MostrarViewHolder holder, int position) {
         Mostrar item = listaMostrar.get(position);
@@ -70,6 +93,10 @@ public class ListaMostrarAdapter extends RecyclerView.Adapter<ListaMostrarAdapte
             holder.view_total.setText(item.getTotal());
         }
     }
+
+
+
+// Repetir para otros campos...
 
     @Override
     public int getItemCount() {
