@@ -34,28 +34,14 @@ public class Ddguardar extends Helper {
             values.put("estado", 0); // Establece el estado como 0 por defecto
 
             id = db.insert(TABLE_COTIZACION, null, values);
+            db.close();
         } catch (Exception ex) {
-            ex.toString();
+            ex.printStackTrace();
         }
         return id;
+
     }
 
-    public void actualizarEstado(int id, int nuevoEstado) {
-        try {
-            Helper helper = new Helper(context);
-            SQLiteDatabase db = helper.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put("estado", nuevoEstado);
-
-            String whereClause = "id = ?";
-            String[] whereArgs = {String.valueOf(id)};
-
-            db.update(TABLE_COTIZACION, values, whereClause, whereArgs);
-        } catch (Exception ex) {
-            ex.toString();
-        }
-    }
 
     public ArrayList< Mostrar>mostrarDatos(){
         Helper Helper = new Helper(context);
@@ -77,6 +63,7 @@ public class Ddguardar extends Helper {
                 mostrar.setDireccion(cursorMostrar.getString( 4));
                 mostrar.setDescripcion(cursorMostrar.getString( 5));
                 mostrar.setTotal(cursorMostrar.getString( 6));
+                mostrar.setEstado(cursorMostrar.getInt( 7));
                 ListaMostrar.add(mostrar);
             }while (cursorMostrar.moveToNext());
         }

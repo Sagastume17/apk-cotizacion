@@ -6,81 +6,86 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/atras"
-            android:background="@color/design_default_color_secondary_variant"
-            android:gravity="center|center_horizontal"
-            android:text="       COTIZACIONES REALIZADAS   "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/material_dynamic_secondary40"
+            android:gravity="center|center_horizontal"
+            android:text="       COTIZACIONES CONFIRMADAS  "
             android:textColor="#151414"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
 
         <TextView
             android:id="@+id/view_cliente"
-            android:gravity="center|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
             android:textColor="#151414"
-            android:textSize="24sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/view_telefono"
-            android:gravity="center|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
             android:textColor="#0B0A0A"
-            android:textSize="24sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/view_fecha"
-            android:gravity="center|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
             android:textColor="#0B0A0A"
-            android:textSize="24sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/view_direccion"
-            android:gravity="center|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
             android:textColor="#0B0A0A"
-            android:textSize="24sp" />
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/view_descripcion"
-            android:gravity="center|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
             android:textColor="#0B0A0A"
-            android:textSize="24sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/view_total"
-            android:gravity="center|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
             android:textColor="#0B0A0A"
-            android:textSize="24sp" />
+            android:textSize="15sp" />
 
-
+        <Button
+            android:id="@+id/btn_eliminar"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/design_default_color_error"
+            android:gravity="center|center_horizontal"
+            android:text="Eliminar "
+            android:textColor="@color/white" />
 
         <TextView
-            android:id="@+id/view_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/material_dynamic_neutral_variant70"
+            android:background="@color/material_dynamic_neutral60"
             android:gravity="center|center_horizontal"
-            android:textColor="#0B0A0A"
-            android:textSize="24sp" />
-
-
-
+            android:textColor="#151414"
+            android:textSize="10sp" />
 
     </LinearLayout>
+
 </LinearLayout>

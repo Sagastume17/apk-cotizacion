@@ -11,7 +11,15 @@ public class Mostrar {
     private String direccion;
     private String descripcion;
     private String total;
+    private int estado;
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
     public int getId() {
         return id;
     }

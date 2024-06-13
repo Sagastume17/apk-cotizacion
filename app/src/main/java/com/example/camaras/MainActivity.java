@@ -52,8 +52,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void exitApp(View view) {
-        finishAffinity(); // Cierra todas las actividades y la aplicación efectivamente.
-    }
 
 }

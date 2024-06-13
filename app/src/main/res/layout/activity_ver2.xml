@@ -14,28 +14,30 @@
         android:layout_height="49dp"
         android:layout_marginTop="71dp"
         android:layout_marginBottom="21dp"
-        android:background="@color/material_dynamic_primary80"
+        android:background="@android:color/holo_green_dark"
         android:gravity="center|center_horizontal"
         android:text="LISTADO DE COTIZACIONES PENDIENTES"
+        android:textColor="@color/black"
         android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextCliente"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="138dp"
-        android:backgroundTint="#8BC34A"
-        android:onClick="activity_main"
-        android:text="Regresar" />
+        android:hint="Nombre del Cliente"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:inputType="text" />
 
     <androidx.recyclerview.widget.RecyclerView
-
-
-        android:id="@+id/listamostra"
+        android:id="@+id/listamostra2"
         android:layout_width="match_parent"
-        android:layout_height="461dp"
-        android:layout_marginTop="-125dp" />
-
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp" />
 
 </LinearLayout>

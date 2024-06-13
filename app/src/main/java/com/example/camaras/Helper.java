@@ -1,11 +1,16 @@
 package com.example.camaras;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.database.Cursor;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class Helper extends SQLiteOpenHelper {
 
@@ -44,47 +49,60 @@ public class Helper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    // Método para insertar datos con estado predeterminado de 0
-    public long insertaDatos(String cliente, String telefono, String fecha, String direccion, String descripcion, float total) {
-        long id = 0;
-        try {
-            SQLiteDatabase db = this.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put(COL_CLIENTE, cliente);
-            values.put(COL_TELEFONO, telefono);
-            values.put(COL_FECHA, fecha);
-            values.put(COL_DIRECCION, direccion);
-            values.put(COL_DESCRIPCION, descripcion);
-            values.put(COL_TOTAL, total);
-            values.put(COL_ESTADO, 0); // Estado predeterminado: 0
-
-            id = db.insert(TABLE_COTIZACION, null, values);
-            db.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return id;
-    }
 
     // Método para actualizar el estado de un registro a 1
+    @SuppressLint("Range")
     public void actualizarEstado(int id, int nuevoEstado) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_ESTADO, nuevoEstado);
+        String whereClause = "ID = ?";
+        String[] whereArgs = {String.valueOf(id)};
+
         try {
-            SQLiteDatabase db = this.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put(COL_ESTADO, nuevoEstado);
-
-            String whereClause = "ID = ?";
-            String[] whereArgs = {String.valueOf(id)};
-
-            db.update(TABLE_COTIZACION, values, whereClause, whereArgs);
+            int rowsAffected = db.update(TABLE_COTIZACION, values, whereClause, whereArgs);
+            if (rowsAffected > 0) {
+                Log.d("Helper", "Actualización exitosa para el ID: " + id);
+            } else {
+                Log.d("Helper", "No se encontró el registro con ID: " + id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             db.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
+
+    public void eliminarCotizacion(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_COTIZACION, "ID = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+    public ArrayList<Mostrar> obtenerTodosLosMostrar() {
+        ArrayList<Mostrar> lista = new ArrayList<>();
+        // Abrir base de datos para lectura
+        SQLiteDatabase db = this.getReadableDatabase();
+        // Consulta para seleccionar todos los registros
+        Cursor cursor = db.rawQuery("SELECT * FROM tablaMostrar WHERE estado = 1", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Mostrar mostrar = new Mostrar();
+                mostrar.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                mostrar.setCliente(cursor.getString(cursor.getColumnIndex("cliente")));
+                mostrar.setTelefono(cursor.getString(cursor.getColumnIndex("telefono")));
+                mostrar.setFecha(cursor.getString(cursor.getColumnIndex("fecha")));
+                mostrar.setDireccion(cursor.getString(cursor.getColumnIndex("direccion")));
+                mostrar.setDescripcion(cursor.getString(cursor.getColumnIndex("descripcion")));
+                mostrar.setTotal(cursor.getString(cursor.getColumnIndex("total")));
+                mostrar.setEstado(cursor.getInt(cursor.getColumnIndex("estado")));
+                lista.add(mostrar);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return lista;
+    }
+
+
 }
-
-
-

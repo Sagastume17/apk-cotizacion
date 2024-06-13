@@ -17,26 +17,28 @@
         android:background="@android:color/holo_red_light"
         android:gravity="center|center_horizontal"
         android:text="LISTADO DE COTIZACIONES"
+        android:textColor="@color/black"
         android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextCliente"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="138dp"
-        android:backgroundTint="#8BC34A"
-        android:onClick="activity_main"
-        android:text="Regresar" />
+        android:hint="Nombre del Cliente"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
 
     <androidx.recyclerview.widget.RecyclerView
-
-
         android:id="@+id/listamostra"
-        android:layout_width="match_parent"
-        android:layout_height="461dp"
-        android:layout_marginTop="-125dp" />
-
+        android:layout_width="347dp"
+        android:layout_height="320dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="35dp"
+        android:layout_weight="1" />
 
 </LinearLayout>
-

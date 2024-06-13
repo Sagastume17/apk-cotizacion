@@ -9,6 +9,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.DatePickerDialog;
+import android.widget.DatePicker;
+
+import java.util.Calendar;
 
 public class Cotizar extends AppCompatActivity {
     EditText cliente,telefono,fecha,direccion,descripcion,total;
@@ -28,45 +32,68 @@ public class Cotizar extends AppCompatActivity {
         descripcion = findViewById(R.id.descripcion);
         total = findViewById(R.id.total);
         btnguardar = findViewById(R.id.btnguardar);
-        button7 = findViewById(R.id.button7); // Busca el botón de regreso en tu diseño XML
+
 
         // Configuración del listener para el botón de guardar
         btnguardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!telefono.getText().toString().matches("[0-9]+")) {
+                    // Si contiene caracteres que no son números, muestra un mensaje de error
+                    Toast.makeText(Cotizar.this, "El teléfono debe contener solo números", Toast.LENGTH_SHORT).show();
+                    return; // Detiene la ejecución del método onClick
+                }
+                Ddguardar ddguardar = new Ddguardar(Cotizar.this);
+                long id = ddguardar.insertaDatos(cliente.getText().toString(), telefono.getText().toString(), fecha.getText().toString(), direccion.getText().toString(), descripcion.getText().toString(), total.getText().toString());
 
-                Ddguardar  ddguardar = new Ddguardar(Cotizar.this);
-                long id = ddguardar.insertaDatos(cliente.getText().toString(),telefono.getText().toString(),fecha.getText().toString(),direccion.getText().toString(),descripcion.getText().toString(),total.getText().toString());
-
-                if(id > 0){
-
-                    Toast.makeText(Cotizar.this,"REGISTRO GRUARDADO",Toast.LENGTH_LONG).show();
+                if (id > 0) {
+                    Toast.makeText(Cotizar.this, "REGISTRO GRUARDADO", Toast.LENGTH_LONG).show();
                     limpiar();
-
-                }else {
-
-                    Toast.makeText(Cotizar.this,"ERROR AL GUARDAR REGUISTRO",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(Cotizar.this, "ERROR AL GUARDAR REGUISTRO", Toast.LENGTH_LONG).show();
                 }
                 // Lógica para guardar los datos
             }
         });
 
         // Configuración del listener para el botón de regreso
-        button7.setOnClickListener(new View.OnClickListener() {
+
+
+        // Configuración del listener para el campo de fecha
+        fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Cierra la actividad actual y vuelve a MainActivity
-                finish();
+                mostrarDatePicker();
             }
         });
     }
-private void limpiar(){
-    cliente.setText("");
-    telefono.setText("");
-    fecha.setText("");
-    direccion.setText("");
-    descripcion.setText("");
-    total.setText("");
-   // btnguardar.setText("");
+
+    private void mostrarDatePicker() {
+        final Calendar calendario = Calendar.getInstance();
+        int año = calendario.get(Calendar.YEAR);
+        int mes = calendario.get(Calendar.MONTH);
+        int día = calendario.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                // Cuando se selecciona una fecha, actualizamos el EditText con la fecha seleccionada
+                String fechaSeleccionada = dayOfMonth + "/" + (month + 1) + "/" + year;
+                fecha.setText(fechaSeleccionada);
+            }
+        }, año, mes, día);
+
+        // Mostrar el diálogo de selección de fecha
+        datePickerDialog.show();
     }
+
+    private void limpiar() {
+        cliente.setText("");
+        telefono.setText("");
+        fecha.setText("");
+        direccion.setText("");
+        descripcion.setText("");
+        total.setText("");
+    }
+
 }

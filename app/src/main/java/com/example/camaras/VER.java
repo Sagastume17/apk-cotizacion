@@ -1,9 +1,14 @@
 package com.example.camaras;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +20,11 @@ import java.util.ArrayList;
 public class VER extends AppCompatActivity {
 
     RecyclerView listarmostrar;
-    ArrayList<Mostrar>listaArrayMostrar;
+    ArrayList<Mostrar> listaArrayMostrar;
+    ListaMostrarAdapter adapter;
 
-    TextView view_total1;
+    EditText etBuscarCliente; // Campo de texto para la búsqueda
 
-    Button button7; // Agrega el botón de regreso
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,29 +34,30 @@ public class VER extends AppCompatActivity {
 
         listarmostrar = findViewById(R.id.listamostra);
         listarmostrar.setLayoutManager(new LinearLayoutManager(this));
-
         Ddguardar dbguardar = new Ddguardar(VER.this);
-
-        listaArrayMostrar = new ArrayList<>();
-        ListaMostrarAdapter adapter = new ListaMostrarAdapter(dbguardar.mostrarDatos());
+        listaArrayMostrar = dbguardar.mostrarDatos(); // Asegúrate de que este método retorne la lista completa.
+        adapter = new ListaMostrarAdapter(listaArrayMostrar, new Helper(this));
         listarmostrar.setAdapter(adapter);
 
+        etBuscarCliente = findViewById(R.id.editTextCliente);
 
-    }
 
-
-    public void llamar(){
-
-    }
-    public void regresar(){
-
-        button7.setOnClickListener(new View.OnClickListener() {
+        EditText etBuscarCliente = findViewById(R.id.editTextCliente);
+        etBuscarCliente.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                // Cierra la actividad actual y vuelve a MainActivity
-                finish();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String textoCliente = s.toString();
+                adapter.filtrarPorCliente(textoCliente);
             }
         });
-    }
 
+    }
 }
